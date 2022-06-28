@@ -3,6 +3,7 @@ package GUI;
 
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -133,7 +135,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         jmAbrir.setForeground(Color.WHITE);
         jmAbrir.setBackground(new Color(49, 147, 189));
         jmAbrir.setOpaque(true);
-         jmAbrir.addMouseListener(new MouseListener() {
+        jmAbrir.addMouseListener(new MouseListener() {
             
            @Override
           public void mouseClicked(MouseEvent e) {
@@ -161,7 +163,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
                 
             }
         });
-        
+         
         this.jmAyuda = new JMenu("AYUDA");
         jmAyuda.setForeground(Color.WHITE);
         jmAyuda.setBackground(new Color(49, 147, 189));
@@ -169,9 +171,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
         jmAyuda.addMouseListener(new MouseListener() {
             
            @Override
-          public void mouseClicked(MouseEvent e) {
-              JOptionPane.showConfirmDialog(null, "presiono ayuda");
-           }
+            public void mouseClicked(MouseEvent e) {
+                Ayuda ventana= new Ayuda();
+                ventana.setVisible(true);
+            }
 
             @Override
             public void mousePressed(MouseEvent e) {
@@ -193,13 +196,6 @@ public class VentanaPrincipal extends JFrame implements ActionListener {
                 
             }
         });
-        
-        
-        
-
-      
-
-        
 
         this.jmbMenu.add(this.jmNuevoJuego);
          this.jmbMenu.add(this.jmSalonFama);
