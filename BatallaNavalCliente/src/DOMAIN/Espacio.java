@@ -4,6 +4,7 @@ package Domain;
 
 public class Espacio {
     
+    private int val;
     private int x;
      private int y;
      private int i;
