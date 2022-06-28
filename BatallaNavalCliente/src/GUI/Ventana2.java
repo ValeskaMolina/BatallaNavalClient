@@ -13,4 +13,6 @@ public class Ventana2 {
     
     int x;
     
+    int y:
+    
 }
