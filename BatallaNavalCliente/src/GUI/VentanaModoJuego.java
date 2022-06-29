@@ -8,6 +8,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -87,8 +90,14 @@ public class VentanaModoJuego  extends JFrame implements ActionListener{
         if (e.getSource() == this.btnComputadora) {
             
             
-           VentanaConfiguracionInicial ventana = new VentanaConfiguracionInicial();
-           ventana.setVisible(true);
+           VentanaConfiguracionInicial ventana;
+            try {
+                ventana = new VentanaConfiguracionInicial();
+                 ventana.setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(VentanaModoJuego.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          
            this.dispose();
 
         
@@ -97,7 +106,16 @@ public class VentanaModoJuego  extends JFrame implements ActionListener{
         
         if (e.getSource() == this.btnJugador) {
             
+            VentanaPartida partida;
+            try {
+                partida = new VentanaPartida();
+                 partida.setVisible(true);
+                 this.dispose();
+            } catch (IOException ex) {
+                Logger.getLogger(VentanaModoJuego.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
+           
             
            
     

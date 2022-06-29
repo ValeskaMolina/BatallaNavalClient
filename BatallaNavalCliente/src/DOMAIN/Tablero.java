@@ -10,8 +10,18 @@ package Domain;
  */
 public class Tablero {
     
+     private Espacio espacioJuego[][];
+
+    public Espacio[][] getEspacioJuego() {
+        return espacioJuego;
+    }
+
+    public void setEspacioJuego(Espacio[][] espacioJuego) {
+        this.espacioJuego = espacioJuego;
+    }
     
-    private Espacio espacioJuego[][];
+    
+   
 
     public Tablero() {
         this.espacioJuego = new Espacio[10][10];
