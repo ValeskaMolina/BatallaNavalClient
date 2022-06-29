@@ -4,10 +4,14 @@
  */
 package GUI;
 
+import DOMAIN.Partida;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,7 +30,9 @@ public class VentanaConfiguracionInicial  extends JFrame implements ActionListen
     private JLabel lblTitulo,lblNombreJugador,lblNaveUnaCasilla;
     private JButton btnContinuar;
     private JTextField jtxfNombreJugador,jtxfNaveUnaCasilla;
-    public VentanaConfiguracionInicial(){
+    private Partida partida;
+    public VentanaConfiguracionInicial() throws IOException{
+        this.partida=Partida.getInstance();
     
         init();
     
@@ -129,7 +135,19 @@ public class VentanaConfiguracionInicial  extends JFrame implements ActionListen
                 
                 
                 }else{
-                
+                    this.partida.getJugador1().setNombre(nombreJugador);
+                    
+                    
+                    VentanaPrejuego ventana;
+                    try {
+                        ventana = new VentanaPrejuego(cantidadNave);
+                        ventana.setVisible(true);
+                    } catch (IOException ex) {
+                        Logger.getLogger(VentanaConfiguracionInicial.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    this.dispose();
+                    
                 
                     //va ventana llenar tablero 
                 
