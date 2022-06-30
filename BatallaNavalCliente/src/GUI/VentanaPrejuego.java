@@ -4,11 +4,17 @@
  */
 package GUI;
 
+import DOMAIN.NaveUnEspacio;
+import DOMAIN.Partida;
+import Domain.Espacio;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -27,6 +33,7 @@ public class VentanaPrejuego extends JFrame  implements ActionListener{
      private JComboBox<String>tipoBarco;
      private JComboBox<String>tipoForma;
      private int cantidadBarcos;
+     private Partida partida;
 
     public JComboBox<String> getTipoForma() {
         return tipoForma;
@@ -43,6 +50,7 @@ public class VentanaPrejuego extends JFrame  implements ActionListener{
         setSize(1020,560);
         setLayout(null);
         getContentPane().setBackground(new Color(29, 90, 112));
+        this.partida= Partida.getInstance();
      
                 
         panelTablero = new PanelPrejuego(cantidadBarcos,this);
@@ -120,7 +128,44 @@ public class VentanaPrejuego extends JFrame  implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        Object selected = e.getSource();        
+        if(e.getSource()== this.btnContinuar)      {
+        
+            if(this.panelTablero.getTotalBarcos()==this.cantidadBarcos){
+                
+                this.partida.llenarTableroComputadora();
+                this.partida.llenarTableroComputadorNave();
+               
+                System.out.println("---------------------------------------------------------------------------------");
+                
+                ArrayList<NaveUnEspacio> tempNave= this.partida.getJugador2().getNaveUnEspacio();
+                 for (int k = 0; k < tempNave.size(); k++) {
+                     System.out.println(" i: " +tempNave.get(k).getUnEspacio().getI()+" J: "+ tempNave.get(k).getUnEspacio().getJ());
+                    
+                }
+                 
+                try {
+                    
+                    this.partida.getEstadisticaJugador1().setNombreJugador(this.partida.getJugador1().getNombre());
+                    this.partida.getEstadisticaJugador1().setTotalJugadas(1);
+                    VenatanaJuego ventana=new VenatanaJuego();
+                    ventana.setVisible(true);
+                    this.dispose();
+                    
+                } catch (IOException ex) {
+                    Logger.getLogger(VentanaPrejuego.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                 
+                
+               
+            }else{
+            
+                JOptionPane.showMessageDialog(this, "Debe completar los barcos que sugirio que son: "+this.cantidadBarcos);
+            
+            }
+        
+        
+        
+        }
 
     } 
 

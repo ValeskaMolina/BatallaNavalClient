@@ -17,10 +17,30 @@ public class Espacio {
      private int j;
      private BufferedImage imagen;
      private int clicks;
+      private boolean oculto;// si esta oculto no muestra la imagen hasta que sea atacado
+      private boolean explotado;// valida si esa casilla ya fue explotada.
      
      
     private int tipo;// 1 mar,2 fallido,3 imagen barco
     private boolean tocado;// cambia el tipo si es tocado.
+
+    public int getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+    
+   
+
+    public boolean isOculto() {
+        return oculto;
+    }
+
+    public void setOculto(boolean oculto) {
+        this.oculto = oculto;
+    }
 
   
     
@@ -33,8 +53,23 @@ public class Espacio {
         this.j = j;
         this.tocado=false;
         this.tipo=tipo;
+        this.oculto=true;
+        this.explotado=false;
         
     }
+      public Espacio(int i, int j, int tipo) {
+        this.x = 0;
+        this.y = 0;
+        this.i = i;
+        this.j = j;
+        this.tocado=false;
+        this.tipo=tipo;
+        this.oculto=true;
+        this.explotado=false;
+        
+    }
+    
+    
     
      public boolean mousePresionadoPreJuego(int xMouse, int yMouse,String forma){
          
@@ -70,6 +105,25 @@ public class Espacio {
         return false;
  
     }
+     
+     
+     
+     public boolean tocaronEspacio(int xMouse, int yMouse){
+         
+         
+         boolean tocaron=false;
+        
+        //  condición de que presionaron una casilla la tocaron
+        if ((xMouse >= this.x && xMouse <= this.x + 40) && (yMouse >= this.y && yMouse <= this.y + 40)) {
+            
+              tocaron=true;
+                           
+        }
+        return tocaron;
+ 
+    }
+     
+     
     
     
     
@@ -100,7 +154,7 @@ public class Espacio {
     
         if(this.tipo==3){
             
-            //4
+         
             
             
          this.imagen=ImageIO.read(getClass().getResourceAsStream("/assets/fallido.png"));
@@ -110,16 +164,37 @@ public class Espacio {
         }
         
         
-           if(this.tipo==4){
+        
+        if(this.tipo==4){
             
-            //4
+            if(oculto){
+            
+                g.setColor(new Color(29, 65, 112));
+                g.fillRect(x, y, 40, 40);
+
+            
+            }else{
+                    this.imagen=ImageIO.read(getClass().getResourceAsStream("/assets/atacado.png"));
+                    g.drawImage(this.imagen, x, y, null);
             
             
-          this.imagen=ImageIO.read(getClass().getResourceAsStream("/assets/atacado.png"));
-          g.drawImage(this.imagen, x, y, null);
+            
+            }
+            
+            
+      
            
           
         }
+        
+        if(this.tipo==5){
+        
+              this.imagen=ImageIO.read(getClass().getResourceAsStream("/assets/atacado.png"));
+              g.drawImage(this.imagen, x, y, null);
+        
+        
+        }
+        
         
     }
     
@@ -145,6 +220,14 @@ public class Espacio {
 
     public void setTocado(boolean tocado) {
         this.tocado = tocado;
+    }
+
+    public boolean isExplotado() {
+        return explotado;
+    }
+
+    public void setExplotado(boolean explotado) {
+        this.explotado = explotado;
     }
     
     

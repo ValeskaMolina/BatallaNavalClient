@@ -17,10 +17,22 @@ public abstract class Nave extends Thread{
      protected int tipo;
      protected String imagenActual;
 
-    public Nave(int tipo, String imagenActual) {
+   
+
+    public Nave(int tipo) {
         this.tipo = tipo;
-        this.imagenActual = imagenActual;
+        this.imagenActual = "";
     }
+    
+     public int getI() {
+        return i;
+    }
+
+    public int getJ() {
+        return j;
+    }
+     protected int i;
+     protected int j;
      
     public abstract void dibujar(Graphics g);
     

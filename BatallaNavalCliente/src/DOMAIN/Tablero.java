@@ -10,7 +10,7 @@ package Domain;
  */
 public class Tablero {
     
-     private Espacio espacioJuego[][];
+     private Espacio [][] espacioJuego;
 
     public Espacio[][] getEspacioJuego() {
         return espacioJuego;
