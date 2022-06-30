@@ -23,6 +23,8 @@ public class PanelPrejuego extends JPanel implements MouseListener  {
     
     private Partida partida;
     private int totalBarcos;
+
+   
     private VentanaPrejuego ventana;
     
     
@@ -92,9 +94,13 @@ public class PanelPrejuego extends JPanel implements MouseListener  {
                 Espacio temp = espacio[i][j];
                 //valida que no se cambie imagen si ya antes fue tocado
                if( !temp.isTocado()&&temp.mousePresionadoPreJuego(e.getX(), e.getY(),forma)){
+                   
+                   
+                   // añade los barcos que van a jugar
+                   this.partida.getJugador1().setNave(temp);
                    this.totalBarcos=this.totalBarcos+1;
                    
-                   System.out.println("entre");
+                   
                    espacio[i][j]=temp;
                    
                }
@@ -111,10 +117,14 @@ public class PanelPrejuego extends JPanel implements MouseListener  {
       
       }
         
-        System.out.println("total barcos"+this.totalBarcos);
         
         
         
+        
+    }
+    
+     public int getTotalBarcos() {
+        return totalBarcos;
     }
 
     @Override

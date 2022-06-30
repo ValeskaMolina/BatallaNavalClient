@@ -14,13 +14,23 @@ import java.awt.Graphics;
  */
 public class NaveUnEspacio extends Nave{
     
-    
     Espacio unEspacio;
+
+    public Espacio getUnEspacio() {
+        return unEspacio;
+    }
+
+    public void setUnEspacio(Espacio unEspacio) {
+        this.unEspacio = unEspacio;
+    }
     
     
-    public NaveUnEspacio(int tipo, String rutaImagen,Espacio espacio){
     
-        super(tipo, rutaImagen);
+    
+    
+    public NaveUnEspacio(int tipo,Espacio espacio){
+    
+        super(tipo);
         this.unEspacio=espacio;
     
     
